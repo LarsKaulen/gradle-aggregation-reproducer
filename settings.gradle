@@ -1,1 +1,7 @@
-rootProject.name = 'reproducer-project'
+rootProject.name = 'jvm-multi-project-with-code-coverage-reproducer'
+
+// production code projects
+include 'application', 'list', 'utilities'
+
+// reporting utility projects
+include 'code-coverage-report'
