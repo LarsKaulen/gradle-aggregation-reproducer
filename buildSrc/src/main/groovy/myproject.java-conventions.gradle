@@ -15,12 +15,6 @@ testing {
         test(JvmTestSuite) {
             useJUnitJupiter()
         }
-
-        integrationTest(JvmTestSuite) {
-            dependencies {
-                implementation(project())
-            }
-        }
     }
 }
 
