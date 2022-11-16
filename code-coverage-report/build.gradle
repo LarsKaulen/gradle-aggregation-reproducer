@@ -27,3 +27,21 @@ tasks.named('check') {
     dependsOn tasks.named('testCodeCoverageReport', JacocoReport) // <.>
     dependsOn tasks.named('integrationTestCodeCoverageReport', JacocoReport)
 }
+
+tasks.named('testCodeCoverageReport') {
+    doFirst {
+        def taskDependencies = gradle.taskGraph.getDependencies(it).collect { it.path }
+        assert taskDependencies.contains(':application:test')
+        assert taskDependencies.contains(':list:test')
+        assert taskDependencies.contains(':utilities:test')
+    }
+}
+
+tasks.named('integrationTestCodeCoverageReport') {
+    doFirst {
+        def taskDependencies = gradle.taskGraph.getDependencies(it).collect { it.path }
+        assert taskDependencies.contains(':application:integrationTest')
+        assert taskDependencies.contains(':list:integrationTest')
+        assert taskDependencies.contains(':utilities:integrationTest')
+    }
+}
